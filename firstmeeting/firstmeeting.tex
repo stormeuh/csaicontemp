@@ -1,4 +1,5 @@
 \documentclass[a4paper,kul]{kulakarticle}
+\usepackage{multicol}
 
 
 \begin{document}
@@ -13,7 +14,25 @@ We want to demonstrate the performance of both approaches to safety. This requir
 playing field, so results can be compared. This leveling of the playing field is a recurring 
 problem in AI research. To solve this problem, shared datasets have emerged and been adopted by researchers. One well known example of this is ImageNet, a database of images to do image procession on.
 \section{DeepMind Gridworlds}
-For safety in reinforcement learning, one such "dataset" being proposed is Gridworlds by Google DeepMind \cite{leike2017ai}. 
+For safety in reinforcement learning, one such "dataset" being proposed is 
+Gridworlds by Google DeepMind \cite{leike2017ai}. There are a total of 8 
+gridworlds. Each gridworld represents a different environments that can be used to test one aspect of AI safety.
+The environments include the following safety checks for a learning agent: 
+\begin{multicols}{2}
+\begin{itemize}
+	\setlength\itemsep{0.25em}
+	\item Safe interruptibility
+	\item Avoiding side effects
+	\item Absent supervisor
+	\item Reward gaming
+	\item Self-modification
+	\item Distributional shift
+	\item Robustness to adversaries
+	\item Safe exploration
+\end{itemize}
+\end{multicols}
+In the following section we will discuss how we will evaluate both systems on 
+the previous criteria.
 
 \bibliographystyle{plain}
 \bibliography{bibliography.bib}
