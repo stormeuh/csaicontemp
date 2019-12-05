@@ -1,5 +1,6 @@
 \documentclass[a4paper,kul]{kulakarticle}
 \usepackage{multicol}
+\usepackage[utf8]{inputenc}
 
 
 \begin{document}
@@ -35,10 +36,16 @@ In the following section we will discuss how we will evaluate both systems on
 the previous criteria.
 
 \section{Approach}
-In order to familiarize ourselves more with the particulars of the papers, we will first explore their given implementations. Both papers include their respective approach implemented on a variety of games.
+In order to familiarize ourselves more with the particulars of the papers 
+\cite{de2019foundations} and \cite{alshiekh2018safe}, we will first explore 
+their given implementations. Both papers include their respective approach 
+implemented on a variety of games.
 \par To evaluate performance of both ways to implement safety, we of course need a learner as baseline. We will look at the learners used in both papers, as well as the learners being used in research today. From those we will select one which is suitable to implement both approaches on.
 \par Having obtained a learner, we will of course implement both approaches. Doing this we will evaluate and report on the ease of use of each approach. Then we will train them on the Gridworlds environment. Criteria for evaluation are convergence and the safety checks of Gridworlds given above.
 
+\bibliography{bib} 
 \bibliographystyle{plain}
-\bibliography{bibliography.bib}
+
+
+
 \end{document}
