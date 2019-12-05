@@ -14,14 +14,14 @@
 We want to demonstrate the performance of both approaches to safety. This requires a level 
 playing field, so results can be compared. This leveling of the playing field is a recurring 
 problem in AI research. To solve this problem, shared datasets have emerged and been adopted by researchers. One well known example of this is ImageNet, a database of images to do image processing on.
+
 \section{DeepMind Gridworlds}
 For safety in reinforcement learning, one such "dataset" being proposed is 
 Gridworlds by Google DeepMind \cite{leike2017ai}. There are a total of 8 
-gridworlds. Each gridworld represents a different environments that can be used to test one aspect of AI safety.
+gridworlds. Each gridworld represents a different environment that can be used to test one aspect of AI safety.
 The environments include the following safety checks for a learning agent: 
 \begin{multicols}{2}
 \begin{itemize}
-	\setlength\itemsep{0.25em}
 	\item Safe interruptibility
 	\item Avoiding side effects
 	\item Absent supervisor
@@ -37,11 +37,11 @@ the previous criteria.
 
 \section{Approach}
 In order to familiarize ourselves more with the particulars of the papers 
-\cite{de2019foundations} and \cite{alshiekh2018safe}, we will first explore 
+\cite{alshiekh2018safe} and \cite{de2019foundations}, we will first explore 
 their given implementations. Both papers include their respective approach 
 implemented on a variety of games.
 \par To evaluate performance of both ways to implement safety, we of course need a learner as baseline. We will look at the learners used in both papers, as well as the learners being used in research today. From those we will select one which is suitable to implement both approaches on.
-\par Having obtained a learner, we will of course implement both approaches. Doing this we will evaluate and report on the ease of use of each approach. Then we will train them on the Gridworlds environment. Criteria for evaluation are convergence and the safety checks of Gridworlds given above.
+\par Having obtained a learner, we will of course implement both approaches. Doing this we will evaluate and report on the ease of use of each approach. Then we will train them on the Gridworlds environment. The first criterion for evaluation is convergence. Both safety approaches are guaranteed to converge on MDPs on which the learner converges without safety. Thus, we will be looking at the speed of convergence. Secondly, we will be evaluating the checks outlined above.
 
 \bibliography{bib} 
 \bibliographystyle{plain}
