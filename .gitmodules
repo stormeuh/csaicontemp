@@ -1,6 +1,0 @@
-[submodule "paper_code/bolts"]
-	path = paper_code/bolts
-	url = https://github.com/iocchi/RLGames
-[submodule "paper_code/shields"]
-	path = paper_code/shields
-	url = https://github.com/safe-rl/safe-rl-shielding
