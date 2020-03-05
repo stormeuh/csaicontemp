@@ -251,7 +251,7 @@ class RLAgent(object):
     def decision(self, x):
         a = self.choose_action(x)
         if self.debug:
-            print("+++ Q [%d] = " %(x), end='')
+            print "+++ Q [%d] = " %(x),
             self.printQA(self.getQA(x))
             c=' '
             if (self.best_action):
@@ -349,7 +349,7 @@ class RLAgent(object):
                     #print("  -- e x:",e[0]," a:",e[1])
                     #print("  -- alpha: ",alpha,"  delta: ", delta)
                     #print("  -- Q(e) = ", self.getQ(e[0],e[1]))
-                    print("  -e- Q[%d] = " %(e[0]), end='')
+                    print "  -e- Q[%d] = " %(e[0]),
                     self.printQA(self.getQA(e[0]))
                     print('')
         if (self.debug):
@@ -459,10 +459,10 @@ class RLAgent(object):
 
 
     def printQA(self, qv):
-        print("[ ", end='')
+        print "[ ",
         for a in qv:
-            print("%.3f "%a, end='')
-        print("]", end='')
+            print "%.3f "%a,
+        print "]",
 
 
 
