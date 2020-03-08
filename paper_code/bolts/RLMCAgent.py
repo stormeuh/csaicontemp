@@ -31,6 +31,7 @@ class MCAgent(object):
         self.lambdae = -1 # lambda value for eligibility traces (-1 no eligibility)  NOT USED HERE
         self.name = 'RLMC'
         self.error = False
+        self.SA_failure = [] # memory state-action failures
 
     def init(self, nstates, nactions):
         self.Q = np.zeros((nstates,nactions))

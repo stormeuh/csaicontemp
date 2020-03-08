@@ -20,14 +20,23 @@ TOKENS = [ ['r1', COLORS[0], 0, 0],  ['r2', 'red', 1, 1], ['r3', 'red', 6, 3],
 # only positive rewards
 
 STATES = {
+    # Start state
     'Init':0,
+    # Agent is alive in game
     'Alive':0,
+    # Agent has made mistake terminating the game
     'Dead':-10,
+    # Agent has put bip on color (currently no reward)
     'Score':0,
+    # Hit a wall
     'Hit':0,
+    # unused
     'GoodColor':0,
+    # put bip on correct color, step closer to goal
     'GoalStep':100,
+    # put bip on wrong color, 
     'RAFail':-10,
+    # reached goal state
     'RAGoal':1000
 }
 
@@ -70,6 +79,14 @@ class RewardAutoma(object):
             b *= 2
         return c
 
+    def check_double_bip(self):
+        for t in self.game.tokenbip:
+            if self.game.tokenbip[t]>1:                
+                self.RAnode = self.RAFail  # FAIL
+                return STATES['RAFail']
+        return 0
+
+
     # RewardAutoma Transition
     def update(self, a=None): # last action executed
         reward = 0
@@ -81,19 +98,15 @@ class RewardAutoma(object):
             self.consecutive_turns += 1
         else:
             self.consecutive_turns = 0
-
+        # agent policy has made it turn 360 degrees for no reason
         if (self.consecutive_turns>=4):
             self.RAnode = self.RAFail  # FAIL
             reward += STATES['RAFail']   
 
-        # check double bip
-        for t in self.game.tokenbip:
-            if self.game.tokenbip[t]>1:                
-                self.RAnode = self.RAFail  # FAIL
-                reward += STATES['RAFail']
-                #print("  *** RA FAIL (two bips) *** ")
-
-
+        # check if a square has been double bipped
+        reward += self.check_double_bip()
+        
+        # if agent has not failed previous tests, continue
         if (self.RAnode != self.RAFail):
             self.RAnode = self.encode_tokenbip()
 
@@ -102,17 +115,18 @@ class RewardAutoma(object):
             # nvisitpercol
             c = np.zeros(self.ncolors)
             kc = -1
-            #print(self.game.colorbip)
             for i in range(len(COLORS)):
+                # Color has been bipped more than rule allows
                 if (self.game.colorbip[COLORS[i]]>self.nvisitpercol):
                     self.RAnode = self.RAFail
                     break
+                # Color does not yet have enough bips to satisfy rule
                 elif (self.game.colorbip[COLORS[i]]<self.nvisitpercol):
                     break
                 kc = i # last color with nvisitsper col satisfied
-            #print("%d visits until color %d" %(self.nvisitpercol,kc))
-
-            if (kc==self.ncolors-1): #  GOAL
+            
+            # Rule was satisfied for last color, goal reached.
+            if (kc==self.ncolors-1):
                 self.RAnode = self.RAGoal
 
             # check bips in colors >= kc+2
@@ -122,7 +136,6 @@ class RewardAutoma(object):
                         #print("RA failure for color %r" %i)
                         self.RAnode = self.RAFail
                         break
-
 
             if (self.last_node != self.RAnode):
                 state_changed = True
@@ -147,6 +160,7 @@ class RewardAutoma(object):
 
         #print("  -- RA reward %d" %(reward))
 
+
         if (state_changed):
             if (self.RAnode in self.visits):
                 self.visits[self.RAnode] += 1
@@ -159,7 +173,7 @@ class RewardAutoma(object):
                     self.success[self.last_node] += 1
                 else:
                     self.success[self.last_node] = 1
-        
+        print self.RAnode
         return (reward, state_changed)
 
     def current_successrate(self):
