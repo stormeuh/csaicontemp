@@ -117,7 +117,7 @@ class RewardAutoma(object):
             kc = -1
             for i in range(len(COLORS)):
                 # Color has been bipped more than rule allows
-                if (self.game.colorbip[COLORS[i]]>self.nvisitpercol):
+                if (self.game.colorbip[COLORS[i]] > self.nvisitpercol):
                     self.RAnode = self.RAFail
                     break
                 # Color does not yet have enough bips to satisfy rule
@@ -166,15 +166,21 @@ class RewardAutoma(object):
                 self.visits[self.RAnode] += 1
             else:
                 self.visits[self.RAnode] = 1
-
+            # If current state is not fail, list previous state as successful
             if (self.RAnode != self.RAFail):
                 #print("Success for last_node ",self.last_node)
                 if (self.last_node in self.success):
                     self.success[self.last_node] += 1
                 else:
                     self.success[self.last_node] = 1
-        print self.RAnode
         return (reward, state_changed)
+
+    def revert(self, state_changed):
+        if state_changed:
+            self.visits[self.RAnode] += -1
+        if self.consecutive_turns > 0:
+            self.consecutive_turns += -1
+        self.RAnode = self.last_node
 
     def current_successrate(self):
         s = 0.0
@@ -230,6 +236,7 @@ class Sapientino(object):
         # Configuration
         self.pause = False # game is paused
         self.debug = False
+        self.shielding = True # Shielding or restraining
         
         self.sleeptime = 0.0
         self.command = 0
@@ -366,15 +373,26 @@ class Sapientino(object):
 
 
     def update_color(self):
+        self.bipped = True
         self.countbip += 1
-        colfound = None
+        # colfound = None
         for t in TOKENS:
             if (self.pos_x == t[2] and self.pos_y == t[3]):
                 self.tokenbip[t[0]] += 1 # token id
                 self.colorbip[t[1]] += 1 # color
-                colfound = t[1]
-        #print ("pos %d %d %d - col %r" %(self.pos_x, self.pos_y, self.pos_th, colfound))
+                # colfound = t[1]
+        # print ("pos %d %d %d - col %r" %(self.pos_x, self.pos_y, self.pos_th, colfound))
 
+    def revert_color(self):
+        self.bipped = False
+        self.countbip += -1
+        # colfound = None
+        for t in TOKENS:
+            if (self.pos_x == t[2] and self.pos_y == t[3]):
+                self.tokenbip[t[0]] += -1  # token id
+                self.colorbip[t[1]] += -1  # color
+                # colfound = t[1]
+        # print ("pos %d %d %d - col %r" %(self.pos_x, self.pos_y, self.pos_th, colfound))
 
     def check_color(self):
         r = ' '
@@ -402,114 +420,43 @@ class Sapientino(object):
         er = random.random()
         self.agent.option_enabled = (er<success_rate)
         #print("RA exploration policy: optimal ",self.agent.partialoptimal, "\n")
-        
-    def update(self, a):
-        
-        self.command = a
 
+    def update(self, a):
+        self.bipped = False
+        self.command = a
         self.prev_state = self.getstate() # remember previous state
-        
-        # print(" == Update start ",self.prev_state," action",self.command)
-        
         self.current_reward = 0 # accumulate reward over all events happened during this action until next different state
-        self.numactions += 1 # total number of actions axecuted in this episode
-        
+        self.numactions += 1 # total number of actions executed in this episode
         white_bip = False
-        
+
+        # First action of the episode
         if (self.firstAction):
             self.firstAction = False
             self.current_reward += STATES['Init']
         
-
-        if (not self.differential):
-            # omni directional motion
-            if self.command == 0: # moving left
-                self.pos_x -= 1
-                if (self.pos_x < 0):
-                    self.pos_x = 0 
-                    self.current_reward += STATES['Hit']
-            elif self.command == 1:  # moving right
-                self.pos_x += 1
-                if (self.pos_x >= self.cols):
-                    self.pos_x = self.cols-1
-                    self.current_reward += STATES['Hit']
-            elif self.command == 2:  # moving up
-                self.pos_y += 1
-                if (self.pos_y >= self.rows):
-                    self.pos_y = self.rows-1
-                    self.current_reward += STATES['Hit']
-            elif self.command == 3:  # moving down
-                self.pos_y -= 1
-                if (self.pos_y< 0):
-                    self.pos_y = 0 
-                    self.current_reward += STATES['Hit']
-        else:
-            # differential motion
-            if self.command == 0: # turn left
-                self.pos_th += 90
-                if (self.pos_th >= 360):
-                    self.pos_th -= 360
-                #print ("left") 
-            elif self.command == 1:  # turn right
-                self.pos_th -= 90
-                if (self.pos_th < 0):
-                    self.pos_th += 360 
-                #print ("right") 
-            elif (self.command == 2 or self.command == 3):
-                dx = 0
-                dy = 0
-                if (self.pos_th == 0): # right
-                    dx = 1
-                elif (self.pos_th == 90): # up
-                    dy = 1
-                elif (self.pos_th == 180): # left
-                    dx = -1
-                elif (self.pos_th == 270): # down
-                    dy = -1
-                if (self.command == 3):  # backward
-                    dx = -dx
-                    dy = -dy
-                    #print ("backward") 
-                #else:
-                    #print ("forward") 
-        
-                self.pos_x += dx
-                if (self.pos_x >= self.cols):
-                    self.pos_x = self.cols-1
-                    self.current_reward += STATES['Hit']
-                if (self.pos_x < 0):
-                    self.pos_x = 0 
-                    self.current_reward += STATES['Hit']
-                self.pos_y += dy
-                if (self.pos_y >= self.rows):
-                    self.pos_y = self.rows-1
-                    self.current_reward += STATES['Hit']
-                if (self.pos_y < 0):
-                    self.pos_y = 0 
-                    self.current_reward += STATES['Hit']
-
-
-        #print ("pos %d %d %d" %(self.pos_x, self.pos_y, self.pos_th))
+        self.move()
 
         if self.command == 4:  # bip
             self.update_color()
-            if (self.check_color()!=' '):
-                pass
-                #self.current_reward += STATES['Score']
-                #if self.debug:
-                #    print("bip on color")
-            else:
+            if (self.check_color()==' '):
                 white_bip = True
-
 
         self.current_reward += STATES['Alive']
 
+        (RAr, state_changed) = self.do_RA_transition(a)
 
-        if (self.differential):
-            (RAr,state_changed) = self.RA.update(a)  # consider also turn actions
-        else:
-            (RAr,state_changed) = self.RA.update()
+        if(self.shielding and self.RA.RAnode == self.RA.RAFail):
+            print "Revert! Revert!"
+            # Revert changes made by bad action
+            self.revert()
+            self.RA.revert(state_changed)
+            # Generate random move command and execute (only bip can be a bad action)
+            self.command = random.choice(range(0,3))
+            self.move()
+            # Calculate and assign new RA reward
+            (RAr, state_changed) = self.do_RA_transition(a)
 
+        # Give RA reward
         self.current_reward += RAr
 
         # RA exploration
@@ -522,16 +469,18 @@ class Sapientino(object):
             RAnode = self.RA.last_node
 
         self.score = self.RA.countupdates
-
         
         # check if episode finished
+        # goal reached
         if self.goal_reached():
             self.current_reward += STATES['Score']
             self.ngoalreached += 1
             self.finished = True
+        # Too many actions taken
         if (self.numactions>(self.cols*self.rows)*10):
             self.current_reward += STATES['Dead']
             self.finished = True
+        # RA is in failed state
         if (self.RA.RAnode==self.RA.RAFail):
             self.finished = True
         if (white_bip):
@@ -546,6 +495,90 @@ class Sapientino(object):
         if (not self.finished and self.reward_shaping_enabled):
             self.current_reward += self.reward_shape(self.prev_state, self.getstate())
 
+    def revert(self):
+        if(self.bipped):
+            self.revert_color()
+
+    def do_RA_transition(self,a):
+        # Make reward automaton transition
+        if (self.differential):
+            return self.RA.update(a)  # consider also turn actions
+        else:
+            return self.RA.update()
+
+
+    def move(self):
+        # Move
+        if (not self.differential):
+            self.move_omni()
+        else:
+            self.move_diff()
+
+    def move_omni(self):
+        if self.command == 0:  # moving left
+            self.pos_x -= 1
+            if (self.pos_x < 0):
+                self.pos_x = 0
+                self.current_reward += STATES['Hit']
+        elif self.command == 1:  # moving right
+            self.pos_x += 1
+            if (self.pos_x >= self.cols):
+                self.pos_x = self.cols - 1
+                self.current_reward += STATES['Hit']
+        elif self.command == 2:  # moving up
+            self.pos_y += 1
+            if (self.pos_y >= self.rows):
+                self.pos_y = self.rows - 1
+                self.current_reward += STATES['Hit']
+        elif self.command == 3:  # moving down
+            self.pos_y -= 1
+            if (self.pos_y < 0):
+                self.pos_y = 0
+                self.current_reward += STATES['Hit']
+
+    def move_diff(self):
+        if self.command == 0:  # turn left
+            self.pos_th += 90
+            if (self.pos_th >= 360):
+                self.pos_th -= 360
+            # print ("left")
+        elif self.command == 1:  # turn right
+            self.pos_th -= 90
+            if (self.pos_th < 0):
+                self.pos_th += 360
+                # print ("right")
+        elif (self.command == 2 or self.command == 3):
+            dx = 0
+            dy = 0
+            if (self.pos_th == 0):  # right
+                dx = 1
+            elif (self.pos_th == 90):  # up
+                dy = 1
+            elif (self.pos_th == 180):  # left
+                dx = -1
+            elif (self.pos_th == 270):  # down
+                dy = -1
+            if (self.command == 3):  # backward
+                dx = -dx
+                dy = -dy
+                # print ("backward")
+            # else:
+            # print ("forward")
+
+            self.pos_x += dx
+            if (self.pos_x >= self.cols):
+                self.pos_x = self.cols - 1
+                self.current_reward += STATES['Hit']
+            if (self.pos_x < 0):
+                self.pos_x = 0
+                self.current_reward += STATES['Hit']
+            self.pos_y += dy
+            if (self.pos_y >= self.rows):
+                self.pos_y = self.rows - 1
+                self.current_reward += STATES['Hit']
+            if (self.pos_y < 0):
+                self.pos_y = 0
+                self.current_reward += STATES['Hit']
 
     def input(self):
 

@@ -444,7 +444,7 @@ if __name__ == "__main__":
     game.gui_visible = args.gui
     game.sound_enabled = args.sound
     if (args.debug):
-        game.sleeptime = 1.0
+        game.sleeptime = .5
         game.gui_visible = True
         
     agent.gamma = args.gamma
