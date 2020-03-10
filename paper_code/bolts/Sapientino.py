@@ -231,7 +231,7 @@ class Sapientino(object):
         self.ncolors = ncol
         self.differential = False
         self.colorsensor = False
-        self.motionnoise = True
+        self.motionnoise = False
         
         # Configuration
         self.pause = False # game is paused
@@ -298,7 +298,7 @@ class Sapientino(object):
         ns = self.nstates * self.RA.nRAstates
         print('Number of states: %d' %ns)
         print('Number of actions: %d' %self.nactions)
-        self.agent.init(ns, self.nactions) 
+        self.agent.init(ns, self.nactions)
         self.agent.set_action_names(self.action_names)
       
     def setRandomSeed(self,seed):
@@ -446,7 +446,7 @@ class Sapientino(object):
         (RAr, state_changed) = self.do_RA_transition(a)
 
         if(self.shielding and self.RA.RAnode == self.RA.RAFail):
-            print "Revert! Revert!"
+            # print "Revert! Revert!"
             # Revert changes made by bad action
             self.revert()
             self.RA.revert(state_changed)
