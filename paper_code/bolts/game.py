@@ -460,7 +460,6 @@ if __name__ == "__main__":
 
     game.init(agent)
 
-
     # load saved data
     load(trainfilename,game,agent)
     print("Game iteration: %d" %game.iteration)
