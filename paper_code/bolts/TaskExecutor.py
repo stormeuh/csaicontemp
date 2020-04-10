@@ -27,6 +27,8 @@ yellow = [210, 250, 80]
 class TaskExecutor(object):
 
     def __init__(self, rows=5, cols=5, trainsessionname='test'):
+        self.shield = True # comment this is line for normal boltz
+        self.shieldBroken = False
         self.agent = None
         self.isAuto = True
         self.gui_visible = False
@@ -99,9 +101,6 @@ class TaskExecutor(object):
         #self.reward_states = REWARD_STATES
         self.maxitemsheld = 1 # max number of items agent can hold
 
-        
-
-
     def ntaskstates(self):
         r = 1
         for t in self.tasks.keys():
@@ -110,7 +109,6 @@ class TaskExecutor(object):
                 r *= len(l)+1
         return r
 
-        
     def init(self, agent):  # init after creation (uses args set from cli)
         if (not self.gui_visible):
             pygame.display.iconify()
@@ -325,9 +323,8 @@ class TaskExecutor(object):
         self.agent.option_enabled = (er<success_rate)
         #print "RA exploration policy: optimal ",self.agent.partialoptimal, "\n"
 
-        
     def update(self, a):
-        
+
         self.command = a
         
         self.prev_state = self.getstate() # remember previous state
@@ -453,8 +450,6 @@ class TaskExecutor(object):
             #    self.agent.partialoptimal = False
                 
         #print " ** Update end ",self.getstate(), " prev ",self.prev_state
-        
-
 
     def input(self):
     
@@ -561,7 +556,6 @@ class TaskExecutor(object):
         self.resfile.write("%d,%d,%d,%d,%d,%d,%d\n" % (self.iteration, self.elapsedtime, self.score, self.cumreward, self.goal_reached(),self.numactions,self.agent.optimal))
         self.resfile.flush()
 
-
     def draw(self):
         self.screen.fill(white)
 
@@ -645,8 +639,6 @@ class TaskExecutor(object):
         
          
         pygame.display.update()
-
-
 
     def quit(self):
         self.resfile.close()

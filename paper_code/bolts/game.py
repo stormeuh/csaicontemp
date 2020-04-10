@@ -279,7 +279,24 @@ def execution_step(game, agent):
         a = agent.decision(x) # current action
     else: # otherwise command is set by user input
         a = game.getUserAction() # action selected by user
+
+    #print("beginning of action: ", game.numactions, game.finished)
+    if hasattr(game, "shield"):
+        game.a_breaks_specifications(a)
+        if game.shieldBroken:
+            list_a = agent.get_all_actions(x)
+
+            for action in list_a:
+                game.a_breaks_specifications(action)
+                if game.shieldBroken:
+                    continue
+                else:
+                    a = action
+                    break
+
     game.update(a)
+    #print(a, game.numactions, game.finished)
+    #print("ending of action: ", game.numactions, game.finished)
     x2 = game.getstate() # new state
     r = game.getreward() # reward
     agent.notify(x,a,r,x2)
@@ -306,6 +323,7 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
     #    game.iteration -= 1
 
     while (run and (args.niter<0 or game.iteration<=args.niter)):
+        print(game.iteration)
         game.reset() # increment game.iteration
         game.draw()
         time.sleep(game.sleeptime)
@@ -313,6 +331,7 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
             agent.optimal = True
             next_optimal = False
         while (run and not game.finished):
+            #time.sleep(0.2)
             grun = game.input()
             if (not grun):
                 userquit = True
@@ -328,6 +347,11 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
                 agent.error = False            
             game.draw()
             time.sleep(game.sleeptime)
+
+        #sys.exit()
+
+
+
 
         # episode finished
         if (game.finished):
@@ -364,13 +388,17 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
 
 # evaluation process
 def evaluate(game, agent, n): # evaluate best policy n times (no updates)
+    global args
     i=0
     run = True
     game.sleeptime = 0.001
     if (game.gui_visible):
         game.sleeptime = 0.1
         game.pause = True
-        
+
+    if (args.eval):
+        game.sleeptime = 1
+
     while (i<n and run):
         game.reset()
         game.draw()
@@ -434,6 +462,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     trainfilename = args.trainfile.replace('.npz','')
+
 
     # load game and agent modules
     game = loadGameModule()
