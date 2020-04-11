@@ -72,7 +72,6 @@ class RLAgent(object):
     def savedata(self):
         return [self.Q, self.Visits, self.SA_failure,random.getstate(),np.random.get_state()]
 
-
     def loaddata(self,data):
         self.Q = data[0]
         self.Visits = data[1]
@@ -246,6 +245,51 @@ class RLAgent(object):
                 chosen_a = random.choice(nfa)            
 
         return chosen_a
+
+    def get_all_actions(self,x):
+        chosen_list = range(self.nactions)
+        if (x is None):
+            print('ERROR!!! Choose action from invalid state!!!')
+
+        if (self.epsilon < -1):
+            maxIter = 100
+            s = self.getSumVisits(x)
+            p = min(float(s) / maxIter, 1.0)
+            epsilon = 0.9 * (1.0 - p) + 0.1
+            # print("  -- iter = %d  -- epsilon = %f" %(s,epsilon))
+        elif (self.epsilon < 0):
+            maxIter = 10000
+            s = self.iteration  # getSumVisits(x)
+            p = min(float(s) / maxIter, 1.0)
+            epsilon = 0.9 * (1.0 - p) + 0.1
+            # print("  -- iter = %d  -- epsilon = %f" %(s,epsilon))
+        else:
+            epsilon = self.epsilon
+        self.best_action = False
+        ar = random.random()
+        # if (self.debug):
+        #    print(" .. random %f < epsilon = %f" %(ar,epsilon))
+
+        if ((not self.optimal) and (not self.option_enabled) and ar < epsilon):
+            # Random action
+            random.shuffle(chosen_list)
+            # if (self.debug):
+            #    print(" .. random choice ",chosen_a)
+
+        else:
+            # Choose the action that maximizes expected reward.
+            self.best_action = True
+            Qa = self.getQA(x)
+            chosen_list = np.argsort(Qa)[::-1]
+
+
+        filtered_chosen_list = []
+        for a in chosen_list:
+            if (x, a) not in self.SA_failure:
+                 filtered_chosen_list.append(a)
+
+        return filtered_chosen_list
+
 
         
     def decision(self, x):
