@@ -399,9 +399,6 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
         i += 1
     agent.optimal = False
 
-
-
-    
 # main
 if __name__ == "__main__":
 
