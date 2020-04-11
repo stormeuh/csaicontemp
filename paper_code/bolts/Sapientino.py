@@ -296,8 +296,8 @@ class Sapientino(object):
             self.nstates *= self.ncolors+1
 
         ns = self.nstates * self.RA.nRAstates
-        print('Number of states: %d' %ns)
-        print('Number of actions: %d' %self.nactions)
+        # print('Number of states: %d' %ns)
+        # print('Number of actions: %d' %self.nactions)
         self.agent.init(ns, self.nactions)
         self.agent.set_action_names(self.action_names)
       
@@ -702,9 +702,6 @@ class Sapientino(object):
         sys.stdout.flush()
 
         self.resfile.write("%d,%d,%d,%d,%d,%d,%d\n" % (self.iteration, self.elapsedtime, RAnode, self.cumreward, self.goal_reached(),self.numactions,self.agent.optimal))
-
-
-
         self.resfile.flush()
 
 
