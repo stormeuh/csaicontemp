@@ -9,6 +9,7 @@ import math, time
 from math import fabs
 from time import gmtime, strftime
 import argparse
+from Minecraft import TASKS
 
 np.set_printoptions(precision=3)
 
@@ -323,7 +324,6 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
     #    game.iteration -= 1
 
     while (run and (args.niter<0 or game.iteration<=args.niter)):
-        print(game.iteration)
         game.reset() # increment game.iteration
         game.draw()
         time.sleep(game.sleeptime)
@@ -397,15 +397,23 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
         game.pause = True
 
     if (args.eval):
-        game.sleeptime = 1
-
+        game.sleeptime = 0.1
+    true_list = []
     while (i<n and run):
         game.reset()
         game.draw()
         time.sleep(game.sleeptime)
 
         agent.optimal = True
+        i = 0
+
         while (run and not game.finished):
+            print("action: ", i, "x_pos: ",game.pos_x, "y_pos: ", game.pos_y)
+            for task, state in game.task_state.items():
+                if state==len(TASKS[task[0]][0]) and task not in true_list:
+                    print(task, "completed")
+                    true_list.append(task)
+            i += 1
             run = game.input()
             if game.pause:
                 time.sleep(1)
@@ -426,12 +434,18 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
             time.sleep(3)
         i += 1
     agent.optimal = False
+    print("action: ", i, "x_pos: ", game.pos_x, "y_pos: ", game.pos_y)
+    for task, state in game.task_state.items():
+        if state == len(TASKS[task[0]][0]) and task not in true_list:
+            print(task, "completed")
+            true_list.append(task)
 
 
 
     
 # main
 if __name__ == "__main__":
+    #os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
     # Set the signal handler
@@ -499,7 +513,7 @@ if __name__ == "__main__":
 
     # learning or evaluation process
     if (args.eval):
-        evaluate(game, agent, 10)
+        evaluate(game, agent, 1)
     else:        
         learn(game, agent, args.maxtime, args.stopongoal)
         writeinfo(trainfilename,game,agent,init=False)
