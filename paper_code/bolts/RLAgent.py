@@ -55,12 +55,12 @@ class RLAgent(object):
         self.etraces = {} # eligibility traces map
         self.nactions = nactions
         
-        print("Agent: %s" %self.name)
-        print("  gamma: %f" %self.gamma)
-        print("  epsilon: %f" %self.epsilon)
-        print("  alpha: %f" %self.alpha)
-        print("  nsteps: %d" %self.nstepsupdates)
-        print("  lambda: %f" %self.lambdae)
+        # print("Agent: %s" %self.name)
+        # print("  gamma: %f" %self.gamma)
+        # print("  epsilon: %f" %self.epsilon)
+        # print("  alpha: %f" %self.alpha)
+        # print("  nsteps: %d" %self.nstepsupdates)
+        # print("  lambda: %f" %self.lambdae)
 
     def set_action_names(self, an):
         self.action_names = an

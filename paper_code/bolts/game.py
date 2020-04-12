@@ -440,9 +440,6 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
             print(task, "completed")
             true_list.append(task)
 
-
-
-    
 # main
 if __name__ == "__main__":
     #os.environ["SDL_VIDEODRIVER"] = "dummy"
