@@ -57,7 +57,7 @@ class TaskExecutor(object):
         self.cumscore100 = 0 
         self.ngoalreached = 0
         
-        self.nactionlimit = 1000
+        self.nactionlimit = 1000 # default 1000 set this lower to give bolts and shield equal chances
         self.ntaskactionslimit = 1000
         self.turnslimit = 10 # max consecutive turns allowed
         self.useslimit = 100 # max consecutive uses allowed
