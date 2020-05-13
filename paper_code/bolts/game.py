@@ -393,7 +393,7 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
     run = True
     game.sleeptime = 0.001
     if (game.gui_visible):
-        game.sleeptime = 0.1
+        game.sleeptime = 0.001
         game.pause = True
 
     if (args.eval):
@@ -429,7 +429,7 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
 
 # main
 if __name__ == "__main__":
-
+#    os.environ["SDL_VIDEODRIVER"] = "dummy"
 
     # Set the signal handler
     signal.signal(signal.SIGINT, handler)

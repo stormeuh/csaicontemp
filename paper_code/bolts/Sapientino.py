@@ -490,7 +490,7 @@ class Sapientino(object):
         #print(" ** Update end ",self.getstate(), " prev ",self.prev_state)
 
         #if (self.finished):
-        #    print("  -- final reward %d" %(self.cumreward))            
+           #print(" %d -- final reward %d" %(self.iteration,self.cumreward))
 
         if (not self.finished and self.reward_shaping_enabled):
             self.current_reward += self.reward_shape(self.prev_state, self.getstate())
