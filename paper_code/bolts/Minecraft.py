@@ -40,7 +40,7 @@ LOCATIONS = [ ('wood',brown,1,1), ('grass',green,4,3), ('iron',grey,5,5),
     ('workbench',dgreen,0,3), ('factory',dgrey,4,6) ]
 
 
-TASKS = { 
+TASKS = {
     'make_plank': [ ['get_wood', 'use_toolshed'] ],
     'make_stick': [ ['get_wood', 'use_workbench'] ],
     'make_cloth': [ ['get_grass', 'use_factory'] ],
@@ -80,8 +80,9 @@ class Minecraft(TaskExecutor):
         self.maxitemsheld = 10
         self.map_actionfns = { 4: self.doget, 5: self.douse,
             6: self.dousebridge, 7: self.douseaxe }
+        self.shieldBroken = False
 
-    def doget(self):
+    def doget(self, shield=False):
         what = self.itemat(self.pos_x, self.pos_y)
         if what!=None and not self.isAuto:
             print("get: ",what)
@@ -89,44 +90,102 @@ class Minecraft(TaskExecutor):
             print("maxitem: ",self.maxitemsheld)
         if (what==None):
             r = self.reward_states['BadGet']
+            self.shieldBroken = True
         elif (len(self.has)==self.maxitemsheld):
             r = self.reward_states['BadGet']
+            self.shieldBroken = True
+
         else:
-            if (not what in self.has):
-                self.has.append(what)
-            r = self.check_action_task('get',what)
+            if shield:
+                r = 0
+            else:
+                if (not what in self.has):
+                    self.has.append(what)
+                r = self.check_action_task('get',what)
         return r
 
-    def douse(self):
+    def douse(self, shield=False):
         what = self.itemat(self.pos_x, self.pos_y)
         if what!=None and not self.isAuto:
             print("use: ",what)
         if (what==None):
             r = self.reward_states['BadUse']
-        else:    
-            r = self.check_action_task('use',what)
+            self.shieldBroken = True
+
+        else:
+            if shield:
+                r = 0
+            else:
+                r = self.check_action_task('use',what)
         return r
 
-    def dousebridge(self):
-        return self.dousetool('bridge')
+    def dousebridge(self, shield=False):
+        return self.dousetool('bridge', shield)
 
-    def douseaxe(self):
-        return self.dousetool('axe')
+    def douseaxe(self, shield=False):
+        return self.dousetool('axe', shield)
 
-    def dousetool(self, what):
+    def dousetool(self, what, shield=False):
         tt = 'make_%s' %what
         if not self.isAuto:
             print("use: ",what)
         if (not tt in self.taskscompleted):
             r = self.reward_states['BadUse']
-        else:    
-            r = self.check_action_task('use',what)
+            self.shieldBroken = True
+        else :
+            if shield:
+                r = 0
+            else:
+                r = self.check_action_task('use',what)
         return r
 
+    def a_breaks_specifications(self,a):
+        # Checks if the current action results in a bad use or get
+        # Shields check
+        self.shieldBroken = False
+
+        newposx = self.pos_x
+        newposy = self.pos_y
+
+        # differential motion not supported
+        if (not self.differential):
+            if a == 0:  # moving left
+                newposx = self.pos_x - 1
+            elif a == 1:  # moving right
+                newposx = self.pos_x + 1
+            elif a == 2:  # moving up
+                newposy = self.pos_y + 1
+            elif a == 3:  # moving down
+                newposy = self.pos_y - 1
+
+        if (newposx < 0):
+            newposx = 0
+        if (newposx >= self.cols):
+            newposx = self.cols - 1
+        if (newposy >= self.rows):
+            newposy = self.rows - 1
+        if (newposy < 0):
+            newposy = 0
+
+
+        #self.pos_x = newposx
+        #self.pos_y = newposy
+
+        if a >= 4:
+            r = 0
+            if (a in self.map_actionfns):
+                # exec action function
+                r = self.map_actionfns[a](shield=True)
+            else:
+                print('ERROR: action command %d unknown!!!' % a)
+
+        return self.shieldBroken
 
 
 
 
+"""
+# this class doesnt get used, use taskExecuter instead WTf?????????????????
 class MinecraftOLD(object):
 
     def __init__(self, rows=10, cols=10, trainsessionname='test'):
@@ -144,6 +203,7 @@ class MinecraftOLD(object):
         # Configuration
         self.pause = False # game is paused
         self.debug = False
+        self.shielding = True
         
         self.differential = False
         
@@ -415,6 +475,7 @@ class MinecraftOLD(object):
 
         
     def update(self, a):
+
         
         self.command = a
         
@@ -533,10 +594,12 @@ class MinecraftOLD(object):
             self.current_reward += REWARD_STATES['Score']
             self.ngoalreached += 1
             self.finished = True
-            
+
+
         if (self.numactions>self.nactionlimit):
             self.current_reward += REWARD_STATES['Dead']
             self.finished = True
+
 
         if (self.consecutive_turns>self.turnslimit or self.consecutive_uses>self.useslimit or self.ntaskactions > self.ntaskactionslimit):
             if (self.agent.optimal):
@@ -547,7 +610,6 @@ class MinecraftOLD(object):
                 
         #print " ** Update end ",self.getstate(), " prev ",self.prev_state
         
-
 
     def input(self):
     
@@ -732,4 +794,4 @@ class MinecraftOLD(object):
     def quit(self):
         self.resfile.close()
         pygame.quit()
-
+"""

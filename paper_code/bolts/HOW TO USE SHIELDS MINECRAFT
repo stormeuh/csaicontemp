@@ -1,0 +1,2 @@
+in taskexecuter moeje bij de __init__ funtie de self.shield commenten of uncommenten
+enkel true of false zetten werkt niet (kweetet skeer ma geen zin om aan te passen)

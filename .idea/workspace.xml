@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cac79658-8c8f-4a12-9613-26350c226671" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Robbe\git\csaicontemp\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Zza26uS3uQIh5bNlyQKOFx4Gcl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/paper_code/bolts" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.myplot">
+    <configuration name="game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="csaicontemp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paper_code/bolts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paper_code/bolts/game.py" />
+      <option name="PARAMETERS" value="Minecraft Q mc_Q_no_shield_real_1 -gamma 0.9 -niter 20000" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="myplot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="csaicontemp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/paper_code/bolts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/paper_code/bolts/myplot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.myplot" />
+        <item itemvalue="Python.game" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cac79658-8c8f-4a12-9613-26350c226671" name="Default Changelist" comment="" />
+      <created>1585844165278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585844165278</updated>
+      <workItem from="1585844196302" duration="420000" />
+      <workItem from="1585844625250" duration="2787000" />
+      <workItem from="1585947586414" duration="1558000" />
+      <workItem from="1586001861574" duration="218000" />
+      <workItem from="1586034253084" duration="1186000" />
+      <workItem from="1586260630192" duration="1683000" />
+      <workItem from="1586262833276" duration="506000" />
+      <workItem from="1586353125645" duration="1169000" />
+      <workItem from="1586368939308" duration="1167000" />
+      <workItem from="1586432005283" duration="35060000" />
+      <workItem from="1586616267029" duration="12306000" />
+      <workItem from="1586644510813" duration="3006000" />
+      <workItem from="1586649254503" duration="7980000" />
+      <workItem from="1586695218583" duration="1380000" />
+      <workItem from="1586805961435" duration="1228000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="205" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586646857208">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="205" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1586646857208" />
+    <state x="430" y="173" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586617933837">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="430" y="173" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1586617933837" />
+    <state x="444" y="80" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1586478112029">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="444" y="80" key="#com.intellij.ide.macro.MacrosDialog/0.0.1366.728@0.0.1366.728" timestamp="1586478112029" />
+    <state x="723" y="98" key="FileChooserDialogImpl" timestamp="1586807290806">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="723" y="98" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586807290806" />
+    <state width="1323" height="92" key="GridCell.Tab.0.bottom" timestamp="1586696621039">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="92" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586696621039" />
+    <state width="1323" height="92" key="GridCell.Tab.0.center" timestamp="1586696621038">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="92" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586696621038" />
+    <state width="1323" height="92" key="GridCell.Tab.0.left" timestamp="1586696621038">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="92" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586696621038" />
+    <state width="1323" height="92" key="GridCell.Tab.0.right" timestamp="1586696621038">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="92" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586696621038" />
+    <state width="1323" height="214" key="GridCell.Tab.1.bottom" timestamp="1586618055675">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="214" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586618055675" />
+    <state width="1323" height="214" key="GridCell.Tab.1.center" timestamp="1586618055675">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="214" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1586618055675" />
+    <state width="1323" height="214" key="GridCell.Tab.1.left" timestamp="1586618055674">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="214" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1586618055674" />
+    <state width="1323" height="214" key="GridCell.Tab.1.right" timestamp="1586618055675">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="214" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1586618055675" />
+    <state x="186" y="9" key="SettingsEditor" timestamp="1586475024249">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="186" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1586475024249" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1586652691787">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1586652691787" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/paper_code/bolts/RLAgent.py</url>
+          <line>281</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/csaicontemp$game.coverage" NAME="game Coverage Results" MODIFIED="1586624504651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paper_code/bolts" />
+    <SUITE FILE_PATH="coverage/csaicontemp$myplot.coverage" NAME="myplot Coverage Results" MODIFIED="1586695998748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/paper_code/bolts" />
+  </component>
+</project>
