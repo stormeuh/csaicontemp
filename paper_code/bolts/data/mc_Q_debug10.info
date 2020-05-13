@@ -1,0 +1,26 @@
+Date:    2020-04-10 15:50:55
+Train:   mc_Q_debug10
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-10 15:50:55,mc_Q_debug10,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000
+Date:    2020-04-10 16:50:58
+Train:   mc_Q_debug10
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-10 16:50:58,mc_Q_debug10,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000

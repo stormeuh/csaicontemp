@@ -1,0 +1,34 @@
+Date:    2020-04-11 18:20:54
+Train:   mc_Q_no_shield_real_2
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-11 18:20:54,mc_Q_no_shield_real_2,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000
+iteration:        892
+goal score:       0
+goal reward:      0.00
+goal n. actions:  197
+highest reward:   119.10
+highest score:    3
+elapsed time:     92
+
+2020-04-11 18:22:27,mc_Q_no_shield_real_2,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000,892,0,0.00,197,119.10,3,92
+
+iteration:        15590
+goal score:       10
+goal reward:      96.21
+goal n. actions:  227
+highest reward:   128.56
+highest score:    10
+elapsed time:     3747
+Optimal policy found.
+
+2020-04-11 19:25:38,mc_Q_no_shield_real_2,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000,15590,10,96.21,227,128.56,10,3747
+

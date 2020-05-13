@@ -1,0 +1,23 @@
+Date:    2020-04-10 20:57:41
+Train:   mc_Q_test11
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-10 20:57:41,mc_Q_test11,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000
+iteration:        114
+goal score:       3
+goal reward:      -0.00
+goal n. actions:  1001
+highest reward:   -0.00
+highest score:    3
+elapsed time:     191
+
+2020-04-10 21:00:52,mc_Q_test11,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000,114,3,-0.00,1001,-0.00,3,191
+

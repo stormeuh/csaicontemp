@@ -1,0 +1,24 @@
+Date:    2020-04-09 17:20:49
+Train:   simplegrid55_Q_01
+Game:    SimpleGrid
+Size:    5 x 5
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-09 17:20:49,simplegrid55_Q_01,SimpleGrid,5,5,Q-Learning,0.900,-1.000,-1.000,1,-1.000
+iteration:        250
+goal score:       2
+goal reward:      0.00
+goal n. actions:  21
+highest reward:   1000.00
+highest score:    8
+elapsed time:     7
+Optimal policy found.
+
+2020-04-09 17:20:56,simplegrid55_Q_01,SimpleGrid,5,5,Q-Learning,0.900,-1.000,-1.000,1,-1.000,250,2,0.00,21,1000.00,8,7
+

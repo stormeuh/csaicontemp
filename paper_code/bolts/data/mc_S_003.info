@@ -1,0 +1,23 @@
+Date:    2020-04-10 00:41:33
+Train:   mc_S_003
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Sarsa
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-10 00:41:33,mc_S_003,Minecraft,10,10,Sarsa,0.900,-1.000,-1.000,1,-1.000
+iteration:        303
+goal score:       1
+goal reward:      18.83
+goal n. actions:  214
+highest reward:   103.23
+highest score:    2
+elapsed time:     166
+
+2020-04-10 00:44:20,mc_S_003,Minecraft,10,10,Sarsa,0.900,-1.000,-1.000,1,-1.000,303,1,18.83,214,103.23,2,166
+

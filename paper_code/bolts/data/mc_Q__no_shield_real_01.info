@@ -1,0 +1,13 @@
+Date:    2020-04-11 16:03:23
+Train:   mc_Q__no_shield_real_01
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   1.000000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-11 16:03:23,mc_Q__no_shield_real_01,Minecraft,10,10,Q-Learning,1.000,-1.000,-1.000,1,-1.000

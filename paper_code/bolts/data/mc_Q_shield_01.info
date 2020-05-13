@@ -1,0 +1,33 @@
+Date:    2020-04-11 15:01:13
+Train:   mc_Q_shield_01
+Game:    Minecraft
+Size:    10 x 10
+Agent:   Q-Learning
+gamma:   0.900000
+epsilon: -1.000000
+alpha:   -1.000000
+n-step:  1
+lambda:  -1.000000
+
+
+2020-04-11 15:01:13,mc_Q_shield_01,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000
+iteration:        213
+goal score:       2
+goal reward:      33.09
+goal n. actions:  301
+highest reward:   119.10
+highest score:    2
+elapsed time:     185
+
+2020-04-11 15:04:19,mc_Q_shield_01,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000,213,2,33.09,301,119.10,2,185
+
+iteration:        545
+goal score:       2
+goal reward:      0.00
+goal n. actions:  301
+highest reward:   124.39
+highest score:    4
+elapsed time:     442
+
+2020-04-11 15:19:10,mc_Q_shield_01,Minecraft,10,10,Q-Learning,0.900,-1.000,-1.000,1,-1.000,545,2,0.00,301,124.39,4,442
+
