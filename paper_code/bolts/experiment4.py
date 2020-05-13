@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib as plt
 from RLAgent import SarsaAgent
 from Sapientino import Sapientino
+from Minecraft import Minecraft
 
 optimalPolicyFound = False
 
@@ -20,10 +21,11 @@ def handler(signum, frame):
 def get_args():
     parser = argparse.ArgumentParser(description='RL games')
     parser.add_argument('name', type=str)
-    parser.add_argument('-gamma', type=float, help='discount factor [default: 1.0]', default=.9)
+    parser.add_argument('game', type=str)
+    parser.add_argument('-gamma', type=float, help='discount factor [default: 0.9]', default=0.9)
     parser.add_argument('-epsilon', type=float, help='epsilon greedy factor [default: -1 = adaptive]', default=-2)
     parser.add_argument('-alpha', type=float, help='alpha factor (-1 = based on visits) [default: -1]', default=-1)
-    parser.add_argument('-nstep', type=int, help='n-steps updates [default: 1]', default=1)
+    parser.add_argument('-nstep', type=int, help='n-steps updates [default: 1]', default=10)
     parser.add_argument('-lambdae', type=float, help='lambda eligibility factor [default: -1 (no eligibility)]',
                         default=-1)
     parser.add_argument('--debug', help='debug flag', action='store_true')
@@ -63,6 +65,7 @@ def learn(game, agent, maxtime=-1, stopongoal=False, logging=True):
     #    game.iteration -= 1
 
     while (run and (args.niter < 0 or game.iteration < args.niter)):
+        if (game.iteration % 100 == 0): print(game.iteration)
         game.reset()  # increment game.iteration
         game.draw()
         time.sleep(game.sleeptime)

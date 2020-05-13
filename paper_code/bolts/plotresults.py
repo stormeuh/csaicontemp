@@ -28,8 +28,9 @@ def loaddata(filename):
         gv = a[:,2]  # goal reached vector
         tm = range(0,len(rv))
 #        ov = a[:,4]  # optimal (no exploration) vector
+    print(tm)
 
-    return tm, rv, fname
+    return tm, rv, fname, sv
 
 
 
@@ -86,7 +87,7 @@ def plotdata(datafiles, save):
     yylabel = []
 
     for f in datafiles:
-        tm,rv,fname = loaddata(f)
+        tm,rv,fname, sv = loaddata(f)
         if tm is not None:
             x,y,ytop,ybot = getplotdata(tm,rv)
             xx += [x]
@@ -105,8 +106,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Plot results')
     #parser.add_argument('file', type=str, help='File name with data')
-    #parser.add_argument('--reward', help='plot reward', action='store_true')
-    #parser.add_argument('--score', help='plot score', action='store_true')
+    parser.add_argument('--reward', help='plot reward', action='store_true')
+    parser.add_argument('--score', help='plot score', action='store_true')
     parser.add_argument('-save', type=str, help='save figure on specified file', default=None)
 
     parser.add_argument('-datafiles', nargs='+', help='[Required] Data files to plot', required=True)
