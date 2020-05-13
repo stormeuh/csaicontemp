@@ -443,11 +443,15 @@ def evaluate(game, agent, n): # evaluate best policy n times (no updates)
 # main
 if __name__ == "__main__":
 <<<<<<< HEAD
+<<<<<<< HEAD
 #    os.environ["SDL_VIDEODRIVER"] = "dummy"
 =======
     #os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 >>>>>>> 4f86d43... lel
+=======
+#    os.environ["SDL_VIDEODRIVER"] = "dummy"
+>>>>>>> 0d153b264f918cce44b5a9d0c2b33c04430eebf8
 
     # Set the signal handler
     signal.signal(signal.SIGINT, handler)
